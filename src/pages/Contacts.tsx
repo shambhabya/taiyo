@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Form from "../components/ContactForm";
-import { nanoid } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../src/redux/store";
 import { deleteContacts } from "../../src/redux/contactsSlice";
@@ -97,6 +96,7 @@ const Contacts: React.FC = () => {
                     setCurrentContactId(contact.id);
                     setIsEditing(!isEditing);
                     setShowAddContactForm(false);
+                    setViewedContact(null);
                   }}
                 >
                   Edit

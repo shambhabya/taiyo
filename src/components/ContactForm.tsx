@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../src/redux/store";
-import {
-  addContacts,
-  editContacts,
-  deleteContacts,
-} from "../redux/contactsSlice";
+import { addContacts, editContacts } from "../redux/contactsSlice";
 
 interface FormProps {
   contactId: string | null;
@@ -30,11 +26,12 @@ const ContactForm: React.FC<FormProps> = ({ contactId }) => {
 
   useEffect(() => {
     if (contactId) {
-      contacts.map((contact) => {
-        if (contact.id === contactId) {
-          setFormData(contact);
-        }
-      });
+      const selectedContact = contacts.find(
+        (contact) => contact.id === contactId
+      );
+      if (selectedContact) {
+        setFormData(selectedContact);
+      }
     }
   }, [contactId]);
 

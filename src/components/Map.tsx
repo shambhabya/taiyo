@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useQuery } from "@tanstack/react-query";
-import { Icon, divIcon, point } from "leaflet";
+import { Icon } from "leaflet";
 
 const customIcon = new Icon({
   iconUrl: require("../icons/placeholder.png"),

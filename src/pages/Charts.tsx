@@ -1,4 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
 import LineGraph from "../components/LineGraph";
 import Map from "../components/Map";
 

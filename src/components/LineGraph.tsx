@@ -36,10 +36,6 @@ const fetchCasesData = async () => {
   }
 };
 
-interface LineGraphProps {
-  data: { [date: string]: number };
-}
-
 const LineGraph: React.FC = () => {
   const {
     isLoading,
