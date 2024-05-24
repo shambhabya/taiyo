@@ -33,7 +33,7 @@ const ContactForm: React.FC<FormProps> = ({ contactId }) => {
         setFormData(selectedContact);
       }
     }
-  }, [contactId]);
+  }, [contactId, contacts]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
