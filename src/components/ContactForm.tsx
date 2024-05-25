@@ -65,7 +65,7 @@ const ContactForm: React.FC<FormProps> = ({ contactId }) => {
       onSubmit={handleSubmit}
       className={`${
         contactId ? " bg-slate-950" : "bg-gray-800"
-      }  p-8 rounded-lg shadow-lg`}
+      }  p-8 rounded-lg shadow-lg mb-10`}
     >
       {contactId ? (
         <div className="font-medium text-red-400 text-2xl mb-2">

@@ -39,6 +39,7 @@ const Contacts: React.FC = () => {
           onClick={() => {
             setShowAddContactForm(!showAddContactForm);
             setIsEditing(false);
+            setViewedContact(null);
           }}
         >
           Add Contact
@@ -71,54 +72,57 @@ const Contacts: React.FC = () => {
         </div>
       )}
 
-      <ul>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 align-middle">
         {contacts.length !== 0 ? (
           contacts.map((contact) => (
-            <li
-              key={contact.id}
-              className="mb-4 flex justify-between items-center"
-            >
-              <div className="flex">
-                <strong>
-                  {contact.firstName} {contact.lastName}
-                </strong>
+            <div className="flex justify-center items-center">
+              <div
+                key={contact.id}
+                className="bg-gray-700 p-4 rounded-md shadow-md flex flex-col justify-between w-3/5"
+              >
+                <div>
+                  <strong>
+                    {contact.firstName} {contact.lastName}
+                  </strong>
+                </div>
+                <div className="mt-4 flex flex-col justify-center items-center">
+                  <button
+                    className="bg-green-500 text-white px-4 py-2 rounded-md mb-2 w-2/3"
+                    onClick={() => handleViewClick(contact)}
+                  >
+                    View
+                  </button>
+                  <button
+                    className="bg-yellow-500 text-white px-4 py-2 rounded-md mb-2 w-2/3"
+                    onClick={() => {
+                      setCurrentContactId(contact.id);
+                      setIsEditing(!isEditing);
+                      setShowAddContactForm(false);
+                      setViewedContact(null);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    className="bg-red-500 text-white px-4 py-2 rounded-md w-2/3"
+                    onClick={() => {
+                      dispatch(deleteContacts(contact.id));
+                      setViewedContact(null);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  className="bg-green-500 text-white px-4 py-2 rounded-md mr-2"
-                  onClick={() => handleViewClick(contact)}
-                >
-                  View
-                </button>
-                <button
-                  className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2"
-                  onClick={() => {
-                    setCurrentContactId(contact.id);
-                    setIsEditing(!isEditing);
-                    setShowAddContactForm(false);
-                    setViewedContact(null);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-md"
-                  onClick={() => {
-                    dispatch(deleteContacts(contact.id));
-                    setViewedContact(null);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
+            </div>
           ))
         ) : (
-          <div className=" bg-slate-700 flex justify-center m-5 rounded-md text-xl">
-            No contacts found. Please add contact using Add Contact button.
+          <div className="bg-slate-700 flex justify-center m-5 rounded-md text-xl p-4">
+            No contacts found. Please add a contact using the Add Contact
+            button.
           </div>
         )}
-      </ul>
+      </div>
     </div>
   );
 };
